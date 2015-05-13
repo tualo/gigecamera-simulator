@@ -1,0 +1,41 @@
+{
+  "name": "gigecamera-simulator",
+  "description": "this program simulates a simple gige vision camera",
+  "homepage": "https://github.com/tualo/gigecamera-simulator",
+  "main": "lib/main.js",
+  "bin": {
+    "gigesimluator": "./bin/gigesimluator"
+  },
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "keywords": [
+    "sorter"
+  ],
+  "author": [
+    {
+      "name": "Thomas Hoffmann",
+      "email": "thomas.hoffmann@tualo.de",
+      "url": "http://tualo.de/"
+    }
+  ],
+  "maintainers": [
+    {
+      "name": "Thomas Hoffmann",
+      "email": "thomas.hoffmann@tualo.de",
+      "url": "http://tualo.de/"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tualo/gigecamera-simulator.git"
+  },
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "nan": "*",
+    "opencv": "*",
+    "commander": "*"
+  }
+
+}

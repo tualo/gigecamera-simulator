@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+var fs = require('fs'),
+    program = require('commander'),
+    pjson = require('../package.json'),
+    path =  require('path'),
+    clss = require(path.join('..','lib','main'));
+
+program
+    .version(pjson.version)
+    .description('gige vision camera simulator')
+    .usage('[options]')
+    .option('-i, --image [image]','the repeatable image')
+    .option('-s, --speed [speed]','rotation speed (default 100)')
+    .option('-r, --run','run the simulation')
+    .parse(process.argv);
+
+if (program.run){
+  var speed = (program.speed || 100)*1;
+  var server = new clss.Server();
+  server.display(true);
+  server.run(true);
+}
