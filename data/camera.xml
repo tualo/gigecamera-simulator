@@ -1,0 +1,304 @@
+<RegisterDescription SchemaMinorVersion="0"
+  xmlns="http://www.genicam.org/GenApi/Version_1_0" MajorVersion="3" MinorVersion="1" ModelName="GigECamera"
+  ProductGuid="0000000-7842-4edd-9130-E2E90A2058BA" SchemaMajorVersion="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  SchemaSubMinorVersion="1" StandardNameSpace="GEV" SubMinorVersion="2"
+  ToolTip="tualo generic GigEVision camera interface" VendorName="Basler" VersionGuid="0000000-E38A-47C2-9618-4EB2068E262C"
+  xsi:schemaLocation="http://www.genicam.org/GenApi/Version_1_0
+  http://www.genicam.org/GenApi/GenApiSchema_Version_1_0.xsd">
+  <Category Name="Root" NameSpace="Standard">
+    <pFeature>AcquisitionTrigger</pFeature>
+  </Category>
+  <Category Name="AcquisitionTrigger" NameSpace="Standard">
+    <ToolTip>This category includes items used to set the image acquisition parameters and to start and stop acquisition</ToolTip>
+    <Description>This category includes items used to set the image acquisition parameters and to start and stop acquisition</Description>
+    <DisplayName>Acquisition Controls</DisplayName>
+    <pFeature>AcquisitionMode</pFeature>
+    <pFeature>AcquisitionStart</pFeature>
+    <pFeature>AcquisitionStop</pFeature>
+    <pFeature>ExposureAuto</pFeature>
+    <pFeature>ExposureTimeRaw</pFeature>
+  </Category>
+  <Enumeration Name="AcquisitionMode" NameSpace="Standard">
+    <ToolTip>Sets the image acquisition mode</ToolTip>
+    <Description>This enumeration sets the image acquisition mode.</Description>
+    <DisplayName>Acquisition Mode</DisplayName>
+    <EnumEntry Name="SingleFrame" NameSpace="Standard">
+      <ToolTip>Sets the acquisition mode to single frame</ToolTip>
+      <Description>This enumeration value sets the camera's acquisition mode to single frame</Description>
+      <DisplayName>Single Frame</DisplayName>
+      <Value>0</Value>
+    </EnumEntry>
+    <EnumEntry Name="Continuous" NameSpace="Standard">
+      <ToolTip>Sets the acquisition mode to continuous</ToolTip>
+      <Description>This enumeration value sets the camera's acquisition mode to continuous.</Description>
+      <DisplayName>Continuous</DisplayName>
+      <Value>2</Value>
+    </EnumEntry>
+    <pValue>N178</pValue>
+    <pSelected>AcquisitionStart</pSelected>
+    <pSelected>AcquisitionStop</pSelected>
+  </Enumeration>
+  <Command Name="AcquisitionStart" NameSpace="Standard">
+    <ToolTip>Starts the acquisition of images</ToolTip>
+    <Description>This command starts the acquisition of images. If the camera is set for single frame acquisition, it will start acquisition of one frame. If the camera is set for continuous frame acquisition, it will start continuous acquisition of frames.</Description>
+    <DisplayName>Acquisition Start</DisplayName>
+    <pIsLocked>N179</pIsLocked>
+    <ImposedAccessMode>WO</ImposedAccessMode>
+    <pValue>N180</pValue>
+    <CommandValue>1</CommandValue>
+  </Command>
+  <Command Name="AcquisitionStop" NameSpace="Standard">
+    <ToolTip>Stops the acquisition of images</ToolTip>
+    <Description>If the camera is set for continuous image acquisition and acquisition has been started, this command stops the acquisition of images.</Description>
+    <DisplayName>Acquisition Stop</DisplayName>
+    <ImposedAccessMode>WO</ImposedAccessMode>
+    <pValue>N181</pValue>
+    <CommandValue>0</CommandValue>
+  </Command>
+  <IntReg Name="N178" NameSpace="Custom">
+    <Address>0x40004</Address>
+    <Length>4</Length>
+    <AccessMode>RW</AccessMode>
+    <pPort>Device</pPort>
+    <pInvalidator>N501</pInvalidator>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </IntReg>
+  <Enumeration Name="ExposureAuto" NameSpace="Standard">
+    <ToolTip>Exposure Auto is the 'automatic' counterpart to manually setting an 'absolute' exposure time.</ToolTip>
+    <Description>The exposure auto function automatically adjusts the Auto Exposure Time Abs parameter value within set limits, until a target average gray value for the pixel data of the related Auto Function AOI is reached.</Description>
+    <DisplayName>Exposure Auto</DisplayName>
+    <pIsImplemented>N243</pIsImplemented>
+    <pIsAvailable>N244</pIsAvailable>
+    <Streamable>Yes</Streamable>
+    <EnumEntry Name="Off" NameSpace="Standard">
+      <ToolTip>Disables the Exposure Auto function.</ToolTip>
+      <Description>Disables the Exposure Auto function.</Description>
+      <DisplayName>Off</DisplayName>
+      <pIsAvailable>N245</pIsAvailable>
+      <Value>0</Value>
+    </EnumEntry>
+    <EnumEntry Name="Once" NameSpace="Standard">
+      <ToolTip>Sets operation mode to 'once'.</ToolTip>
+      <Description>When the 'once' mode of operation is selected, the parameter value is automatically adjusted until the related image property reaches the target value. After the automatic parameter value adjustment is complete, the auto function will automatically be set to 'off' and the new parameter value will be applied to the following images.</Description>
+      <DisplayName>Once</DisplayName>
+      <pIsAvailable>N246</pIsAvailable>
+      <Value>1</Value>
+    </EnumEntry>
+    <EnumEntry Name="Continuous" NameSpace="Standard">
+      <ToolTip>Sets operation mode to 'continuous'.</ToolTip>
+      <Description>When the 'continuous' mode of operation is selected, the parameter value is automatically adjusted while images are acquired. The repeated automatic adjustment will proceed until the 'once' mode of operation is used or until the auto function is set to 'off'.</Description>
+      <DisplayName>Continuous</DisplayName>
+      <pIsAvailable>N247</pIsAvailable>
+      <Value>2</Value>
+    </EnumEntry>
+    <pValue>N248</pValue>
+  </Enumeration>
+  <Integer Name="ExposureTimeRaw" NameSpace="Standard">
+    <ToolTip>Sets the 'raw' exposure time. Actual exposure time = raw exposure setting x exposure time base abs setting</ToolTip>
+    <Description>This value sets an integer that will be used as a multiplier for the exposure timebase. The actual exposure time equals the current exposure time raw setting times the current exposure time base abs setting.</Description>
+    <DisplayName>Exposure Time (Raw)</DisplayName>
+    <pIsImplemented>N249</pIsImplemented>
+    <pIsAvailable>N250</pIsAvailable>
+    <pIsLocked>N251</pIsLocked>
+    <Streamable>Yes</Streamable>
+    <pValue>N252</pValue>
+    <pMin>N253</pMin>
+    <pMax>N254</pMax>
+    <pInc>N255</pInc>
+    <Representation>Linear</Representation>
+  </Integer>
+  <IntReg Name="N180" NameSpace="Custom">
+    <Address>0x40024</Address>
+    <Length>4</Length>
+    <AccessMode>RW</AccessMode>
+    <pPort>Device</pPort>
+    <Cachable>WriteAround</Cachable>
+    <pInvalidator>N501</pInvalidator>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </IntReg>
+  <IntReg Name="N181" NameSpace="Custom">
+    <Address>0x40044</Address>
+    <Length>4</Length>
+    <AccessMode>RW</AccessMode>
+    <pPort>Device</pPort>
+    <Cachable>WriteAround</Cachable>
+    <pInvalidator>N501</pInvalidator>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </IntReg>
+  <IntReg Name="N501" NameSpace="Custom">
+    <Address>0x60004</Address>
+    <Length>4</Length>
+    <AccessMode>RW</AccessMode>
+    <pPort>Device</pPort>
+    <Cachable>WriteAround</Cachable>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </IntReg>
+  <Converter Name="N256">
+    <pVariable Name="P1">N967</pVariable>
+    <pVariable Name="P2">N966</pVariable>
+    <FormulaTo>(P1=1)?(FROM*1000/P2):(FROM)</FormulaTo>
+    <FormulaFrom>(P1=1)?(TO*P2/1000):(TO)</FormulaFrom>
+    <pValue>ExposureTimeRaw</pValue>
+    <Slope>Increasing</Slope>
+  </Converter>
+  <IntReg Name="N966" NameSpace="Custom">
+    <Address>0x40448</Address>
+    <Length>4</Length>
+    <AccessMode>RO</AccessMode>
+    <pPort>Device</pPort>
+    <pInvalidator>N501</pInvalidator>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </IntReg>
+  <MaskedIntReg Name="N967" NameSpace="Custom">
+    <Address>0x40440</Address>
+    <Length>4</Length>
+    <AccessMode>RO</AccessMode>
+    <pPort>Device</pPort>
+    <pInvalidator>N501</pInvalidator>
+    <Bit>1</Bit>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </MaskedIntReg>
+  <MaskedIntReg Name="N244" NameSpace="Custom">
+    <Address>0x40420</Address>
+    <Length>4</Length>
+    <AccessMode>RO</AccessMode>
+    <pPort>Device</pPort>
+    <pInvalidator>N501</pInvalidator>
+    <Bit>1</Bit>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </MaskedIntReg>
+  <MaskedIntReg Name="N245" NameSpace="Custom">
+    <Address>0x4042c</Address>
+    <Length>4</Length>
+    <AccessMode>RO</AccessMode>
+    <pPort>Device</pPort>
+    <pInvalidator>N501</pInvalidator>
+    <pInvalidator>N6</pInvalidator>
+    <Bit>0</Bit>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </MaskedIntReg>
+  <MaskedIntReg Name="N246" NameSpace="Custom">
+    <Address>0x4042c</Address>
+    <Length>4</Length>
+    <AccessMode>RO</AccessMode>
+    <pPort>Device</pPort>
+    <pInvalidator>N501</pInvalidator>
+    <pInvalidator>N272</pInvalidator>
+    <pInvalidator>N6</pInvalidator>
+    <Bit>1</Bit>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </MaskedIntReg>
+  <MaskedIntReg Name="N247" NameSpace="Custom">
+    <Address>0x4042c</Address>
+    <Length>4</Length>
+    <AccessMode>RO</AccessMode>
+    <pPort>Device</pPort>
+    <pInvalidator>N501</pInvalidator>
+    <pInvalidator>N272</pInvalidator>
+    <pInvalidator>N6</pInvalidator>
+    <Bit>2</Bit>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </MaskedIntReg>
+  <IntReg Name="N248" NameSpace="Custom">
+    <Address>0x40424</Address>
+    <Length>4</Length>
+    <AccessMode>RW</AccessMode>
+    <pPort>Device</pPort>
+    <Cachable>NoCache</Cachable>
+    <PollingTime>5000</PollingTime>
+    <pInvalidator>N501</pInvalidator>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </IntReg>
+  <MaskedIntReg Name="N249" NameSpace="Custom">
+    <Address>0x40460</Address>
+    <Length>4</Length>
+    <AccessMode>RO</AccessMode>
+    <pPort>Device</pPort>
+    <pInvalidator>N501</pInvalidator>
+    <Bit>0</Bit>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </MaskedIntReg>
+  <MaskedIntReg Name="N250" NameSpace="Custom">
+    <Address>0x40460</Address>
+    <Length>4</Length>
+    <AccessMode>RO</AccessMode>
+    <pPort>Device</pPort>
+    <pInvalidator>N501</pInvalidator>
+    <pInvalidator>N216</pInvalidator>
+    <pInvalidator>N196</pInvalidator>
+    <pInvalidator>N272</pInvalidator>
+    <Bit>1</Bit>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </MaskedIntReg>
+  <MaskedIntReg Name="N251" NameSpace="Custom">
+    <Address>0x40460</Address>
+    <Length>4</Length>
+    <AccessMode>RO</AccessMode>
+    <pPort>Device</pPort>
+    <pInvalidator>N501</pInvalidator>
+    <pInvalidator>N248</pInvalidator>
+    <pInvalidator>N248</pInvalidator>
+    <Bit>3</Bit>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </MaskedIntReg>
+  <IntReg Name="N252" NameSpace="Custom">
+    <Address>0x40464</Address>
+    <Length>4</Length>
+    <AccessMode>RW</AccessMode>
+    <pPort>Device</pPort>
+    <Cachable>NoCache</Cachable>
+    <PollingTime>5000</PollingTime>
+    <pInvalidator>N501</pInvalidator>
+    <pInvalidator>N248</pInvalidator>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </IntReg>
+  <IntReg Name="N253" NameSpace="Custom">
+    <Address>0x40468</Address>
+    <Length>4</Length>
+    <AccessMode>RO</AccessMode>
+    <pPort>Device</pPort>
+    <pInvalidator>N501</pInvalidator>
+    <pInvalidator>N248</pInvalidator>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </IntReg>
+  <IntReg Name="N254" NameSpace="Custom">
+    <Address>0x4046c</Address>
+    <Length>4</Length>
+    <AccessMode>RO</AccessMode>
+    <pPort>Device</pPort>
+    <pInvalidator>N501</pInvalidator>
+    <pInvalidator>N248</pInvalidator>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </IntReg>
+  <IntReg Name="N255" NameSpace="Custom">
+    <Address>0x40470</Address>
+    <Length>4</Length>
+    <AccessMode>RO</AccessMode>
+    <pPort>Device</pPort>
+    <pInvalidator>N501</pInvalidator>
+    <Sign>Unsigned</Sign>
+    <Endianess>BigEndian</Endianess>
+  </IntReg>
+
+
+  <Port Name="Device" NameSpace="Standard">
+    <ToolTip> Port giving access to the camera. </ToolTip>
+  </Port>
+</RegisterDescription>

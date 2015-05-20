@@ -35,6 +35,7 @@
   "dependencies": {
     "nan": "*",
     "opencv": "*",
+    "nanotimer": "0.3.10",
     "commander": "*"
   }
 
