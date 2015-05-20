@@ -2,7 +2,7 @@
   xmlns="http://www.genicam.org/GenApi/Version_1_0" MajorVersion="3" MinorVersion="1" ModelName="GigECamera"
   ProductGuid="0000000-7842-4edd-9130-E2E90A2058BA" SchemaMajorVersion="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   SchemaSubMinorVersion="1" StandardNameSpace="GEV" SubMinorVersion="2"
-  ToolTip="tualo generic GigEVision camera interface" VendorName="Basler" VersionGuid="0000000-E38A-47C2-9618-4EB2068E262C"
+  ToolTip="tualo generic GigEVision camera interface" VendorName="taulo" VersionGuid="0000000-E38A-47C2-9618-4EB2068E262C"
   xsi:schemaLocation="http://www.genicam.org/GenApi/Version_1_0
   http://www.genicam.org/GenApi/GenApiSchema_Version_1_0.xsd">
   <Category Name="Root" NameSpace="Standard">
