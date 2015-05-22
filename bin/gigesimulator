@@ -4,7 +4,8 @@ var fs = require('fs'),
     program = require('commander'),
     pjson = require('../package.json'),
     path =  require('path'),
-    clss = require(path.join('..','lib','main'));
+    clss = require(path.join('..','lib','main')),
+    cv = require('opencv');
 
 program
     .version(pjson.version)
@@ -18,6 +19,22 @@ program
 if (program.run){
   var speed = (program.speed || 100)*1;
   var server = new clss.Server();
-  server.display(true);
-  server.run(true);
+  if (program.image){
+    cv.readImage(program.image,function(err,im){
+      if (err){
+        console.log(err);
+      }else{
+        im.convertGrayscale();
+        server.mat = im;
+        server.imageWidth = im.width();
+        server.imageHeight = im.height();
+        server.display(true);
+        server.run(true);
+
+      }
+    })
+  }else{
+    server.display(true);
+    server.run(true);
+  }
 }
